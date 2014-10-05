@@ -5,6 +5,12 @@ require_once('./Customizing/global/plugins/Services/UIComponent/UserInterfaceHoo
 require_once('./Services/Language/classes/class.ilLanguage.php');
 require_once('./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/CtrlMainMenu/classes/Menu/class.ctrlmmMenu.php');
 require_once('./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/CtrlMainMenu/classes/EntryInstaceFactory/class.ctrlmmEntryInstaceFactory.php');
+
+//MSTX SSI specific - START
+require_once('./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/EducationManagement/classes/class.ilEducationManagementAccess.php');
+require_once('./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/CourseCertificate/classes/class.ilCourseCertificateAccess.php');
+require_once('./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/EducationManagement/classes/class.ilEducationManagement.php');
+//MSTX SSI specific - END
 /*
 	+-----------------------------------------------------------------------------+
 	| ILIAS open source                                                           |
@@ -771,6 +777,38 @@ class ctrlmmEntry {
 					$this->setCachedPermission($state);
 
 					break;
+				//MSTX - SSI Specific START
+				case ctrlmmMenu::PERM_HAS_COURSES;
+					$ilEducationManagement = new ilEducationManagement();
+					if($ilEducationManagement->hasCoursesInMyResponsibility()) {
+						return true;
+					}
+					break;
+				case ctrlmmMenu::PERM_SUPERIOR;
+					$ilEducationManagementAccess = new ilEducationManagementAccess();
+					if($ilEducationManagementAccess->isCurrentUserSuperior()) {
+						return true;
+					}
+					break;
+				case ctrlmmMenu::PERM_REPORTING;
+					$ilEducationManagementAccess = new ilEducationManagementAccess();
+					if($ilEducationManagementAccess->hasCurrentUserReportsPermission()) {
+						return true;
+					}
+					break;
+				case ctrlmmMenu::PERM_ADMIN_CERT;
+					$ilCourseCertificateAccess = new ilCourseCertificateAccess();
+					if($ilCourseCertificateAccess->hasCurrentUserAdministratePermission()) {
+						return true;
+					}
+					break;
+				case ctrlmmMenu::PERM_ASSIGN_USERS_COURSES;
+					$ilEducationManagementAccess = new ilEducationManagementAccess();
+					if($ilEducationManagementAccess->hasCurrentUserLocalCrsAdminPermission()) {
+						return true;
+					}
+					break;
+				//MSTX - SSI Specific END
 				case ctrlmmMenu::PERM_NONE:
 				case NULL;
 					$this->setCachedPermission(true);

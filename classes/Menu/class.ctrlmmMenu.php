@@ -52,6 +52,13 @@ class ctrlmmMenu {
 	const PERM_REF_READ = 102;
 	const PERM_REF_WRITE = 103;
 	const PERM_USERID = 105;
+	//MSTX ssi specific - START
+	const PERM_SUPERIOR = 900;
+	const PERM_HAS_COURSES = 901;
+	const PERM_REPORTING = 902;
+	const PERM_ADMIN_CERT = 903;
+	const PERM_ASSIGN_USERS_COURSES = 904;
+	//MSTX ssi specific - END
 	/**
 	 * @var array
 	 */

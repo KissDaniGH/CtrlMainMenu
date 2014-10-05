@@ -27,10 +27,24 @@ class ctrlmmEntryDropdownGUI extends ctrlmmEntryGroupedListDropdownGUI {
 	 * @return html
 	 */
 	protected function setGroupedListContent() {
+		/*
+		 * MSTX - Bugfix - if previos is identicals to current. don't print
 		foreach ($this->entry->getEntries() as $entry) {
 			if ($entry->checkPermission()) {
 				$this->gl->addEntry($entry->getTitle(), $entry->getLink(), $entry->getTarget(), '', '',
 					'mm_pd_sel_items' . $entry->getId(), '', 'left center', 'right center', false);
+			}
+		}*/
+
+		//MSTX - Bugfix - if previos is identicals to current. don't print
+		$previus_link = "";
+		foreach ($this->entry->getEntries() as $entry) {
+			if ($entry->checkPermission()) {
+				if($previus_link != $entry->getLink()) {
+					$this->gl->addEntry($entry->getTitle(), $entry->getLink(), $entry->getTarget(), '', '',
+						'mm_pd_sel_items' . $entry->getId(), '', 'left center', 'right center', false);
+				}
+				$previus_link = $entry->getLink();
 			}
 		}
 	}
