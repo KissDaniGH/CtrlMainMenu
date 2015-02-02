@@ -25,18 +25,18 @@ class ctrlmmEntryAdminGUI extends ctrlmmEntryAdvancedSelectionListDropdownGUI {
 	}
 
 
-	/**
-	 * @param string $mode
-	 */
-	public function initForm($mode = 'create') {
-		parent::initForm($mode);
-		/**
-		 * @var $permission_type ilRadioGroupInputGUI
-		 * @var $item            ilTextInputGUI
-		 */
-		$permission_type = $this->form->getItemByPostVar('permission_type');
-		$permission_type->setDisabled(true);
-	}
+//	/**
+//	 * @param string $mode
+//	 */
+//	public function initForm($mode = 'create') {
+//		parent::initForm($mode);
+//		/**
+//		 * @var $permission_type ilRadioGroupInputGUI
+//		 * @var $item            ilTextInputGUI
+//		 */
+//		$permission_type = $this->form->getItemByPostVar('permission_type');
+//		$permission_type->setDisabled(true);
+//	}
 
 
 	/**

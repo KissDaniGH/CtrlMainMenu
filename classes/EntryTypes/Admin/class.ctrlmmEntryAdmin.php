@@ -64,12 +64,12 @@ class ctrlmmEntryAdmin extends ctrlmmEntry {
 	}
 
 
-	/**
-	 * @return bool
-	 */
-	public function checkPermission() {
-		global $rbacsystem;
-
-		return $rbacsystem->checkAccess('visible', SYSTEM_FOLDER_ID);
-	}
+//	/**
+//	 * @return bool
+//	 */
+//	public function checkPermission() {
+//		global $rbacsystem;
+//
+//		return $rbacsystem->checkAccess('visible', SYSTEM_FOLDER_ID);
+//	}
 }
