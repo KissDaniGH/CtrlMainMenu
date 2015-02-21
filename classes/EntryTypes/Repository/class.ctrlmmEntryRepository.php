@@ -34,15 +34,11 @@ class ctrlmmEntryRepository extends ctrlmmEntry {
 	/**
 	 * @var int
 	 */
-	private $max_history_items = 10;
+	protected $max_history_items = 10;
 	/**
 	 * @var bool
 	 */
 	protected $restricted = true;
-	/**
-	 * @var int
-	 */
-	protected $type = ctrlmmMenu::TYPE_REPOSITORY;
 
 
 	/**
@@ -52,7 +48,6 @@ class ctrlmmEntryRepository extends ctrlmmEntry {
 		parent::__construct($primary_key);
 		$this->setType(ctrlmmMenu::TYPE_REPOSITORY);
 	}
-
 
 
 	/**
