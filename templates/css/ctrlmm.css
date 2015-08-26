@@ -1,0 +1,14 @@
+p.warning {
+	font-size: 10px;
+	color:     red;
+
+}
+
+tr.fsxSortable {
+	background-color: #FDFDFD;
+	border-bottom:    1px solid #D6D6D6;
+}
+
+tr.fsxSortable:last-of-type {
+	border-bottom: none;
+}
