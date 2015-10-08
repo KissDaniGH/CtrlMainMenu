@@ -67,7 +67,25 @@ class ctrlmmEntryRepository extends ctrlmmEntry {
 	public function isActive() {
 		global $ilMainMenu;
 
-		return $ilMainMenu->active == "repository" || $ilMainMenu->active == NULL;
+		return $this->hasNoOtherActive() AND ($ilMainMenu->active == 'repository' OR $ilMainMenu->active == NULL);
+	}
+
+	protected function hasNoOtherActive() {
+		$active = 0;
+
+		foreach (ctrlmmEntry::getAll() as $entry) {
+			if ($entry->getId() == $this->getId()) {
+				continue;
+			}
+
+			if($entry->isActive())
+				return false;
+
+			if ($entry->getType() == $this->getType()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 
