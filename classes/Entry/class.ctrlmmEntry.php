@@ -139,17 +139,8 @@ class ctrlmmEntry {
 	 * @return bool
 	 */
 	public function read() {
-		if (ctrlmmMenu::checkGlobalCache()) {
-			$record = ilGlobalCache::getInstance('ctrl_mm')->get(self::TABLE_NAME . '_' . $this->getId());
-			if (! $record) {
-				$result = $this->db->query('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = ' . $this->db->quote($this->getId(), 'integer'));
-				$record = $this->db->fetchObject($result);
-				ilGlobalCache::getInstance('ctrl_mm')->set(self::TABLE_NAME . '_' . $this->getId(), $record, 60);
-			}
-		} else {
-			$result = $this->db->query('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = ' . $this->db->quote($this->getId(), 'integer'));
-			$record = $this->db->fetchObject($result);
-		}
+		$result = $this->db->query('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = ' . $this->db->quote($this->getId(), 'integer'));
+		$record = $this->db->fetchObject($result);
 
 		$this->setLink($record->link);
 		$this->setType($record->type);
